@@ -10,7 +10,7 @@ import outputs from "../amplify_outputs.json";
 // <Authenticator><App/></Authenticator>
 import '@aws-amplify/ui-react/styles.css';
 
-// Amplify.configure(outputs);
+Amplify.configure(outputs);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
