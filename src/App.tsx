@@ -3,7 +3,7 @@ import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
 
 // Auth add en fin de main : <button onClick={signOut}>Sign out</button>
-// import { useAuthenticator } from '@aws-amplify/ui-react';
+import { useAuthenticator } from '@aws-amplify/ui-react';
 
 const client = generateClient<Schema>();
 
@@ -11,7 +11,7 @@ function App() {
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
 
   // auth
-  //const { signOut } = useAuthenticator();
+  const { signOut } = useAuthenticator();
 
   useEffect(() => {
     client.models.Todo.observeQuery().subscribe({
@@ -24,9 +24,9 @@ function App() {
   }
 
   // frontend update
-  function deleteTodo(id: string) {
-    client.models.Todo.delete({ id })
-  }
+  // function deleteTodo(id: string) {
+  //   client.models.Todo.delete({ id })
+  // }
 
   return (
     <main>
@@ -36,7 +36,7 @@ function App() {
         {todos.map((todo) => (
           <li 
           // frontend update          
-          onClick={() => deleteTodo(todo.id)}
+          //onClick={() => deleteTodo(todo.id)}
           key={todo.id}>{todo.content}</li>
         ))}
       </ul>
@@ -47,7 +47,7 @@ function App() {
           Review next step of this tutorial.
         </a>
       </div>
-      
+      <button onClick={signOut}>Sign out</button>
     </main>
   );
 }
